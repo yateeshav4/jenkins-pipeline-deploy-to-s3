@@ -19,6 +19,7 @@ pipeline {
                 // Execute shell commands to copy HTML files to S3 bucket
                 script {
                     sh "aws s3 cp public/index.html s3://jenkinstf-ec2-static-bucket/"
+                    sh "aws s3 cp public/error.html s3://jenkinstf-ec2-static-bucket/"
                 }
             }
         }
