@@ -8,7 +8,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID') // Access Key ID from Jenkins credentials
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY') // Secret Access Key from Jenkins credentials
-        AWS_DEFAULT_REGION = "eu-west-1" // AWS region to use
+        AWS_DEFAULT_REGION = "ap-south-1" // AWS region to use
     }
 
     // Define stages for the pipeline
@@ -18,8 +18,8 @@ pipeline {
             steps {
                 // Execute shell commands to copy HTML files to S3 bucket
                 script {
-                    sh "aws s3 cp public/index.html s3://jenkinstf-ec2-static-bucket/"
-                    sh "aws s3 cp public/error.html s3://jenkinstf-ec2-static-bucket/"
+                    sh "aws s3 cp public/index.html s3://wallmart-bucket/"
+                    sh "aws s3 cp public/error.html s3://wallmart-bucket/"
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 // Execute shell command to set bucket policy using policy.json file
                 script {
-                    sh "aws s3api put-bucket-policy --bucket jenkinstf-ec2-static-bucket --policy file://policy.json"
+                    sh "aws s3api put-bucket-policy --bucket wallmart-bucket --policy file://policy.json"
                 }
             }
         }
